@@ -38,7 +38,7 @@ namespace KartGame.KartSystems
             public float ReverseAcceleration;
 
             [Tooltip("How quickly the Kart starts accelerating from 0. A higher number means it accelerates faster sooner.")]
-            [Range(0.2f, 1)]
+            [Range(0.2f, 4)]
             public float AccelerationCurve;
 
             [Tooltip("How quickly the Kart slows down when going in the opposite direction.")]

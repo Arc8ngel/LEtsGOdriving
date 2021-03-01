@@ -14,5 +14,7 @@ namespace KartGame.KartSystems
         /// Override this function to generate an XY input that can be used to steer and control the car.
         /// </summary>
         public abstract Vector2 GenerateInput();
+
+        public bool InputAllowed;
     }
 }

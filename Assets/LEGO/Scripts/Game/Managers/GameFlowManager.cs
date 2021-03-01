@@ -54,8 +54,8 @@ namespace Unity.LEGO.Game
             {
                 m_ControllerAxisXName = m_FreeLookCamera.m_XAxis.m_InputAxisName;
                 m_ControllerAxisYName = m_FreeLookCamera.m_YAxis.m_InputAxisName;
-                m_FreeLookCamera.m_XAxis.m_InputAxisName = "";
-                m_FreeLookCamera.m_YAxis.m_InputAxisName = "";
+                //m_FreeLookCamera.m_XAxis.m_InputAxisName = "";
+                //m_FreeLookCamera.m_YAxis.m_InputAxisName = "";
             }
         }
 
@@ -64,6 +64,8 @@ namespace Unity.LEGO.Game
             StartCoroutine(StartGameLockLookRotation());
 
             VariableManager.Reset();
+
+            EventManager.Broadcast(new GameStartEvent());
         }
 
         IEnumerator StartGameLockLookRotation()

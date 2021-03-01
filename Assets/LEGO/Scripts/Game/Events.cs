@@ -5,11 +5,17 @@ namespace Unity.LEGO.Game
 
     public static class Events
     {
+        public static GameStartEvent GameStartEvent = new GameStartEvent();
         public static OptionsMenuEvent OptionsMenuEvent = new OptionsMenuEvent();
         public static ObjectiveAdded ObjectiveAddedEvent = new ObjectiveAdded();
         public static VariableAdded VariableAddedEvent = new VariableAdded();
         public static GameOverEvent GameOverEvent = new GameOverEvent();
         public static LookSensitivityUpdateEvent LookSensitivityUpdateEvent = new LookSensitivityUpdateEvent();
+    }
+
+    public class GameStartEvent: GameEvent
+    {
+
     }
 
     // UI Events.

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.LEGO.Behaviours.Actions;
+using Unity.LEGO.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,18 +11,18 @@ public class CollectionCount : MonoBehaviour
     Text[] collectedCountText;
 
     [SerializeField]
-    Animator collectionImageAnimator;
+    Animator animator;
 
     [SerializeField]
     string animator_CollectTrigger = "Collect";
+
+    [SerializeField]
+    string animator_AllCollected = "AllCollected";
 
     private int collectedCount;
     private int totalToCollect;
 
     List<PickupAction> pickupList;
-
-    public delegate void EventHandler();
-    public event EventHandler AllPickupsCollected;
 
     private void Awake()
     {
@@ -80,16 +81,22 @@ public class CollectionCount : MonoBehaviour
             UnRegisterCollectionItem(pickup);
             collectedCount++;
 
-            if (collectionImageAnimator != null )
+            if (animator != null )
             {
-                collectionImageAnimator.SetTrigger(animator_CollectTrigger);
+                animator.SetTrigger(animator_CollectTrigger);
             }
 
             UpdateText();
 
             if (collectedCount >= totalToCollect )
             {
-                AllPickupsCollected?.Invoke();
+                EventManager.Broadcast(new GameOverEvent());
+
+                if (animator != null )
+                {
+                    animator.SetTrigger(animator_AllCollected);
+                }
+
                 Debug.Log("YOU WIN!");
             }
         }
