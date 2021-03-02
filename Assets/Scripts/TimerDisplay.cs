@@ -19,6 +19,8 @@ public class TimerDisplay : MonoBehaviour
     private float m_timeElapsed;
     private bool m_isTimeCounting = false;
 
+    private bool m_gameIsOver = false;
+
     private void Awake()
     {
         if( inputSystem == null )
@@ -55,8 +57,9 @@ public class TimerDisplay : MonoBehaviour
         if (inputSystem != null )
         {
             inputSystem.InputAllowed = allow;
-            SetTimerActive(true);
         }
+
+        SetTimerActive(allow);
     }
 
     private void SetTimerActive(bool active)
@@ -67,7 +70,7 @@ public class TimerDisplay : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if( m_isTimeCounting )
+        if( !m_gameIsOver && m_isTimeCounting )
         {
             m_timeElapsed += Time.deltaTime;
             UpdateTimerText();
@@ -88,12 +91,23 @@ public class TimerDisplay : MonoBehaviour
 
     private void OnGameStart(GameStartEvent evt)
     {
+        m_gameIsOver = false;
         StartCoroutine(AllowInput(true, m_IntroLockoutTime));
     }
 
     private void OnGameOver(GameOverEvent evt)
     {
+        m_gameIsOver = true;
+
         SetTimerActive(false);
         StartCoroutine(AllowInput(false, 1f));
+    }
+
+    private void OnMenuToggled(OptionsMenuEvent evt)
+    {
+        if (inputSystem != null )
+        {
+            inputSystem.InputAllowed = !evt.Active;
+        }
     }
 }

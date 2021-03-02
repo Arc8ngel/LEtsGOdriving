@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.LEGO.Game;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -136,8 +137,33 @@ namespace KartGame.KartSystems
         {
             Rigidbody = GetComponent<Rigidbody>();
             m_Inputs = GetComponents<IInput>();
+
             suspensionNeutralPos = SuspensionBody.transform.localPosition;
             suspensionNeutralRot = SuspensionBody.transform.localRotation;
+
+            EventManager.AddListener<OptionsMenuEvent>(evt => OnMenuToggled(evt.Active));
+        }
+
+        private void OnDestroy()
+        {
+            EventManager.RemoveListener<OptionsMenuEvent>(evt => OnMenuToggled(evt.Active));
+        }
+
+        private void OnMenuToggled(bool menuActive)
+        {
+            if( Rigidbody != null )
+            {
+                if( menuActive )
+                {
+                    Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                }
+                else
+                {
+                    Rigidbody.constraints = RigidbodyConstraints.None;
+                }
+            }
+
+            SetCanMove(!menuActive);
         }
 
         void FixedUpdate()
@@ -163,11 +189,14 @@ namespace KartGame.KartSystems
 
             // apply vehicle physics
             GroundVehicle(minHeight);
+
             if( canMove )
             {
                 MoveVehicle(accel, turn);
             }
+
             GroundAirbourne();
+            
 
             // animation
             AnimateSuspension();
@@ -427,6 +456,9 @@ namespace KartGame.KartSystems
 
         bool IsStuck()
         {
+            if( !canMove )
+                return false;
+
             float speed = Rigidbody.velocity.magnitude;
             if( GroundPercent <= 0 && speed < 0.01f && Mathf.Abs(Input.y) > 0 )
                 return true;
