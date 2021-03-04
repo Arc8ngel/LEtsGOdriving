@@ -30,12 +30,14 @@ public class TimerDisplay : MonoBehaviour
 
         EventManager.AddListener<GameStartEvent>(OnGameStart);
         EventManager.AddListener<GameOverEvent>(OnGameOver);
+        EventManager.AddListener<TimeStop>(OnTimeStop);
     }
 
     private void OnDestroy()
     {
         EventManager.RemoveListener<GameStartEvent>(OnGameStart);
         EventManager.RemoveListener<GameOverEvent>(OnGameOver);
+        EventManager.RemoveListener<TimeStop>(OnTimeStop);
     }
 
     // Start is called before the first frame update
@@ -99,8 +101,12 @@ public class TimerDisplay : MonoBehaviour
     {
         m_gameIsOver = true;
 
-        SetTimerActive(false);
         StartCoroutine(AllowInput(false, 1f));
+    }
+
+    private void OnTimeStop(TimeStop evt)
+    {
+        SetTimerActive(false);
     }
 
     private void OnMenuToggled(OptionsMenuEvent evt)

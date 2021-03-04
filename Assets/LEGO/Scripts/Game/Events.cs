@@ -11,6 +11,7 @@ namespace Unity.LEGO.Game
         public static VariableAdded VariableAddedEvent = new VariableAdded();
         public static GameOverEvent GameOverEvent = new GameOverEvent();
         public static LookSensitivityUpdateEvent LookSensitivityUpdateEvent = new LookSensitivityUpdateEvent();
+        public static TimeStop TimeStopEvent = new TimeStop();
     }
 
     public class GameStartEvent: GameEvent
@@ -33,6 +34,11 @@ namespace Unity.LEGO.Game
     public class VariableAdded : GameEvent
     {
         public Variable Variable;
+    }
+
+    public class TimeStop : GameEvent
+    {
+        public bool Stopped;
     }
 
     public class GameOverEvent : GameEvent

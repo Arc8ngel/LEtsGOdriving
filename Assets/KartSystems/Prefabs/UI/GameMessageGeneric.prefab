@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491261063411729930}
-  - component: {fileID: 876710413839154128}
   - component: {fileID: 2281273805922867241}
   m_Layer: 5
   m_Name: GameMessageGeneric
@@ -39,23 +38,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 38.6}
   m_SizeDelta: {x: 900, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &876710413839154128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3003312392959327722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7105c0d95b5d43042b5ab0674df1e09a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textContent: {fileID: 5477207880696060906}
-  canvasGroup: {fileID: 2281273805922867241}
-  visibleDuration: 3
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
 --- !u!225 &2281273805922867241
 CanvasGroup:
   m_ObjectHideFlags: 0

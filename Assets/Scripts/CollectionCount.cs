@@ -35,6 +35,8 @@ public class CollectionCount : MonoBehaviour
             pickupList?.ForEach(pickup => RegisterCollectionItem(pickup));
         }
 
+        //animator.SetBool(animator_AllCollected, false);
+
         UpdateText();
     }
 
@@ -90,15 +92,23 @@ public class CollectionCount : MonoBehaviour
 
             if (collectedCount >= totalToCollect )
             {
-                EventManager.Broadcast(new GameOverEvent());
-
                 if (animator != null )
                 {
-                    animator.SetTrigger(animator_AllCollected);
+                    animator.SetBool(animator_AllCollected, true);
                 }
 
+                EventManager.Broadcast(new TimeStop());
                 Debug.Log("YOU WIN!");
+
+                StartCoroutine(StopGame(3.5f));
             }
         }
+    }
+
+    private IEnumerator StopGame(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        EventManager.Broadcast(new GameOverEvent());
     }
 }
