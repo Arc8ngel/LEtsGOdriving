@@ -131,7 +131,7 @@ namespace Unity.LEGO.Game
 
         void OnDestroy()
         {
-            EventManager.RemoveListener<GameOverEvent>(OnGameOver);
+            //EventManager.RemoveListener<GameOverEvent>(OnGameOver);
         }
 
         IEnumerator ZoomInOnPlayer()

@@ -115,6 +115,7 @@
     <Compile Include="Assets\KartSystems\Utilities\RequireInterfaceAttribute.cs" />
     <Compile Include="Assets\KartSystems\Utilities\RotateOnAxis.cs" />
     <Compile Include="Assets\Scripts\CollectionCount.cs" />
+    <Compile Include="Assets\Scripts\ExhaustParticles.cs" />
     <Compile Include="Assets\Scripts\TimerDisplay.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

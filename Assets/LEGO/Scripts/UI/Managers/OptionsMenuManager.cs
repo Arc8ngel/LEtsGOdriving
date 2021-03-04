@@ -33,16 +33,22 @@ namespace Unity.LEGO.UI
         {
             m_FrameRateCounter = FindObjectOfType<FrameRateCounter>();
 
-            if (m_FrameRateCounter == null)
-                Debug.LogError("FrameRate Counter is missing!");
+            //if (m_FrameRateCounter == null)
+                //Debug.LogError("FrameRate Counter is missing!");
 
             m_Menu.SetActive(false);
 
-            m_ShadowsToggle.SetIsOnWithoutNotify(QualitySettings.shadows != ShadowQuality.Disable);
-            m_ShadowsToggle.onValueChanged.AddListener(OnShadowsChanged);
+            if( m_ShadowsToggle != null )
+            {
+                m_ShadowsToggle.SetIsOnWithoutNotify(QualitySettings.shadows != ShadowQuality.Disable);
+                m_ShadowsToggle.onValueChanged.AddListener(OnShadowsChanged);
+            }
 
-            m_FrameRateCounterToggle.SetIsOnWithoutNotify(m_FrameRateCounter.IsShowing);
-            m_FrameRateCounterToggle.onValueChanged.AddListener(OnFramerateCounterChanged);
+            if( m_FrameRateCounterToggle != null && m_FrameRateCounter != null )
+            {
+                m_FrameRateCounterToggle.SetIsOnWithoutNotify(m_FrameRateCounter.IsShowing);
+                m_FrameRateCounterToggle.onValueChanged.AddListener(OnFramerateCounterChanged);
+            }
 
             var defaultValue = PlayerPrefs.GetFloat("LookSensitivity", 5.0f);
             m_LookSensitivity.SetValueWithoutNotify(defaultValue);

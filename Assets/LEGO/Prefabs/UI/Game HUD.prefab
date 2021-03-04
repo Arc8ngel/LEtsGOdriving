@@ -5616,7 +5616,7 @@ MonoBehaviour:
   - {fileID: 3829665929744334096}
   animator: {fileID: 0}
   animator_CollectTrigger: Collect
-  animator_AllCollected: AllCollected
+  animator_AllCollected: GameOver
 --- !u!1 &2335994757866568343
 GameObject:
   m_ObjectHideFlags: 0
