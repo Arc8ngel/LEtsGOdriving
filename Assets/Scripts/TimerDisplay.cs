@@ -16,6 +16,15 @@ public class TimerDisplay : MonoBehaviour
     [SerializeField]
     private float m_IntroLockoutTime = 3.0f;
 
+    [SerializeField]
+    private AudioSource bgmMusicSource;
+
+    [SerializeField]
+    private AudioSource driverAudio;
+
+    [SerializeField]
+    private float bgmMusicStartDelay = 2f;
+
     private float m_timeElapsed;
     private bool m_isTimeCounting = false;
 
@@ -47,6 +56,15 @@ public class TimerDisplay : MonoBehaviour
         {
             inputSystem.InputAllowed = false;
         }
+
+        StartCoroutine(BGMAudioInit());
+    }
+
+    private IEnumerator BGMAudioInit()
+    {
+        yield return new WaitForSeconds(bgmMusicStartDelay);
+
+        bgmMusicSource?.Play();
     }
 
     private IEnumerator AllowInput(bool allow, float delay = 0f)
@@ -59,6 +77,11 @@ public class TimerDisplay : MonoBehaviour
         if (inputSystem != null )
         {
             inputSystem.InputAllowed = allow;
+
+            if( allow && driverAudio != null)
+            {
+                driverAudio.Play();
+            }
         }
 
         SetTimerActive(allow);
@@ -76,6 +99,12 @@ public class TimerDisplay : MonoBehaviour
         {
             m_timeElapsed += Time.deltaTime;
             UpdateTimerText();
+        }
+
+        if( m_gameIsOver && bgmMusicSource != null && bgmMusicSource.isPlaying )
+        {
+            // Fade out
+            bgmMusicSource.volume = Mathf.Floor(bgmMusicSource.volume * 0.95f);
         }
     }
 

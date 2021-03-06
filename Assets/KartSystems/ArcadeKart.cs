@@ -477,19 +477,41 @@ namespace KartGame.KartSystems
             {
                 lastGroundCollided = other.collider.gameObject;
             }
+
+            AudioSource triggeredAudio = other.collider.gameObject.GetComponent<AudioSource>();
+
+            if( triggeredAudio != null )
+            {
+                triggeredAudio.Play();
+            }
         }
 
         void ResetIfStuck()
         {
-            if( IsStuck() && lastGroundCollided != null)
+            if( IsStuck() && lastGroundCollided != null || UnityEngine.Input.GetKeyDown(KeyCode.R))
             {
                 transform.localRotation = Quaternion.identity;
+
+                var closestRoad = FindClosest("Road");
+
+                if( closestRoad != null )
+                {
+                    Vector3 pos = new Vector3(
+                            closestRoad.transform.position.x,
+                            closestRoad.transform.position.y + MinHeightThreshold,
+                            closestRoad.transform.position.z
+                        );
+
+                    transform.position = pos;
+                    return;
+                }
+
 
                 if( lastGroundCollided.CompareTag("Road") && lastGroundCollided.TryGetComponent(out Collider collider) )
                 {
                     Vector3 pos = new Vector3(
                         collider.bounds.center.x,
-                        collider.bounds.max.y + MinHeightThreshold,
+                        collider.bounds.max.y - MinHeightThreshold,
                         collider.bounds.center.z
                     );
                     transform.position = pos;
@@ -514,7 +536,7 @@ namespace KartGame.KartSystems
                     }
                     else // No road beneath kart
                     {
-                        var closestRoad = FindClosest("Road");
+                        closestRoad = FindClosest("Road");
 
                         if( closestRoad != null )
                         {

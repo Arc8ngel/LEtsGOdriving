@@ -229,6 +229,7 @@ namespace Unity.LEGO.Minifig
             animator.SetBool(groundedHash, true);
 
             // Make sure the Character Controller is grounded if starting on the ground.
+            if (controller.enabled)
             controller.Move(Vector3.down * 0.01f);
         }
 

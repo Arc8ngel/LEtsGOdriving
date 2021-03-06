@@ -14,6 +14,9 @@ public class ExhaustParticles : MonoBehaviour
     [SerializeField]
     private BaseInput iInput;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     private Dictionary<ParticleSystem, float> _rateOverTimeMultipliers;
 
     private void Awake()
@@ -41,6 +44,11 @@ public class ExhaustParticles : MonoBehaviour
                 float multiplier = _rateOverTimeMultipliers[system] * (1f + Mathf.Abs(inputs.y) * 2f);
                 emissionMod.rateOverTimeMultiplier = multiplier;
             }
+        }
+
+        if (audioSource != null )
+        {
+            audioSource.pitch = 1f + (inputs.y * 0.75f);
         }
     }
 }
