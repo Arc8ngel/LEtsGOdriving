@@ -1298,6 +1298,10 @@ MonoBehaviour:
   m_BrickPivotOffset: {x: -0.39999992, y: 0.569, z: -0.40000004}
   Progress: 0
   Goal: 0
+  m_Conditions:
+  - Variable: {fileID: 0}
+    Type: 0
+    Value: 0
   m_Target: 0
   m_SpecificTargetActions: []
   m_Repeat: 1
@@ -1388,7 +1392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onlyActiveGameObject: 1
   hideChildren: 1
-  hideSelf: 0
 --- !u!1 &7013081774796455547
 GameObject:
   m_ObjectHideFlags: 0

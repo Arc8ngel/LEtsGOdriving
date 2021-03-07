@@ -97,7 +97,15 @@ public class CollectionCount : MonoBehaviour
                     animator.SetBool(animator_AllCollected, true);
                 }
 
-                EventManager.Broadcast(new TimeStop());
+                float laptime = 0;
+
+                TimerDisplay timerDisp = FindObjectOfType<TimerDisplay>();
+                if( timerDisp != null )
+                {
+                    laptime = timerDisp.GetTimeElapsed();
+                }
+
+                EventManager.Broadcast(new TimeStopEvent(laptime));
                 Debug.Log("YOU WIN!");
 
                 StartCoroutine(StopGame(3.5f));
@@ -108,7 +116,6 @@ public class CollectionCount : MonoBehaviour
     private IEnumerator StopGame(float delay)
     {
         yield return new WaitForSeconds(delay);
-
         EventManager.Broadcast(new GameOverEvent());
     }
 }

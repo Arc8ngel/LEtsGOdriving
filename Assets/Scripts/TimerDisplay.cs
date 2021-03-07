@@ -39,14 +39,16 @@ public class TimerDisplay : MonoBehaviour
 
         EventManager.AddListener<GameStartEvent>(OnGameStart);
         EventManager.AddListener<GameOverEvent>(OnGameOver);
-        EventManager.AddListener<TimeStop>(OnTimeStop);
+        EventManager.AddListener<TimeStopEvent>(OnTimeStop);
+        EventManager.AddListener<OptionsMenuEvent>(OnMenuToggled);
     }
 
     private void OnDestroy()
     {
         EventManager.RemoveListener<GameStartEvent>(OnGameStart);
         EventManager.RemoveListener<GameOverEvent>(OnGameOver);
-        EventManager.RemoveListener<TimeStop>(OnTimeStop);
+        EventManager.RemoveListener<TimeStopEvent>(OnTimeStop);
+        EventManager.RemoveListener<OptionsMenuEvent>(OnMenuToggled);
     }
 
     // Start is called before the first frame update
@@ -60,10 +62,13 @@ public class TimerDisplay : MonoBehaviour
         StartCoroutine(BGMAudioInit());
     }
 
+    public float GetTimeElapsed() => m_timeElapsed;
+
     private IEnumerator BGMAudioInit()
     {
         yield return new WaitForSeconds(bgmMusicStartDelay);
 
+        SoundManager.Instance.PlayMusic(bgmMusicSource);
         bgmMusicSource?.Play();
     }
 
@@ -104,7 +109,7 @@ public class TimerDisplay : MonoBehaviour
         if( m_gameIsOver && bgmMusicSource != null && bgmMusicSource.isPlaying )
         {
             // Fade out
-            bgmMusicSource.volume = Mathf.Floor(bgmMusicSource.volume * 0.95f);
+            bgmMusicSource.volume = Mathf.Floor(bgmMusicSource.volume * 0.95f) * SoundManager.Instance.GetMusicVolumeMultiplier();
         }
     }
 
@@ -133,7 +138,7 @@ public class TimerDisplay : MonoBehaviour
         StartCoroutine(AllowInput(false, 1f));
     }
 
-    private void OnTimeStop(TimeStop evt)
+    private void OnTimeStop(TimeStopEvent evt)
     {
         SetTimerActive(false);
     }
