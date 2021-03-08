@@ -11,12 +11,13 @@ public class WinCelebrationMessage : MonoBehaviour
     Text[] finalMessage_texts;
 
     List<(float, string)> CompletionStringAndTimes = new List<(float, string)>(){
+        ( 36f, "SUCH SPEED"),
         ( 40f, "SO FAST"),
-        ( 45F, "ZOOM ZOOM"),
-        ( 50F, "WEEEEEEE"),
-        ( 60F, "MEH"),
-        ( 80F, "EASY RIDER"),
-        ( 45F, "PARKOUR!")
+        ( 45f, "ZOOM ZOOM"),
+        ( 50f, "WEEEEEEE"),
+        ( 60f, "MEH"),
+        ( 80f, "EASY RIDER"),
+        (2000f, "TRY AGAIN")        
     };
 
     private void Awake()

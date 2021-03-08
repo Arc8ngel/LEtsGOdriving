@@ -116,6 +116,8 @@ public class CollectionCount : MonoBehaviour
     private IEnumerator StopGame(float delay)
     {
         yield return new WaitForSeconds(delay);
-        EventManager.Broadcast(new GameOverEvent());
+        GameOverEvent evt = new GameOverEvent();
+        evt.Win = true;
+        EventManager.Broadcast(evt);
     }
 }

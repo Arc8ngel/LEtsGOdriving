@@ -27,27 +27,52 @@ public class SoundManager : MonoBehaviour
 
     private bool _musicIsPlaying = false;
 
+    private bool _isInitialized = false;
+
     private void Awake()
     {
         Instance = this;
 
         originalVolumeDict = new Dictionary<AudioSource, float>();
 
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        musicVolumeSlider.onValueChanged.AddListener(val => musicVolume = val);
+        if( !_isInitialized )
+        {
+            musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        }
+
+        musicVolumeSlider.onValueChanged.AddListener(UpdateVolume);
 
         EventManager.AddListener<OptionsMenuEvent>(OnOptionsMenuToggled);
+
+        _isInitialized = true;
+    }
+
+    private void UpdateVolume(float volume)
+    {
+        if( _musicSource != null )
+        {
+            if( originalVolumeDict != null && originalVolumeDict.ContainsKey(_musicSource) )
+            {
+                musicVolume = volume;
+                _musicSource.volume = originalVolumeDict[_musicSource] * musicVolume;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        musicVolumeSlider.onValueChanged.RemoveListener(UpdateVolume);
     }
 
     private void OnApplicationFocus(bool focus)
     {
         if( !focus )
         {
-            PauseMusic();
+            PauseMusic(true);
         }
         else if(_musicIsPlaying)
         {
-            PlayMusic();
+            PauseMusic(false);
         }
     }
 
@@ -64,23 +89,30 @@ public class SoundManager : MonoBehaviour
     {
         if( evt.Active )
         {
-            PauseMusic();
+            //PauseMusic();
         }
         else
         {
             PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-            PlayMusic();
+            PauseMusic(false);
         }
     }
 
-    public void PauseMusic()
+    public void PauseMusic(bool pause)
     {
-        _musicSource?.Pause();
+        if( pause )
+        {
+            _musicSource?.Pause();
+        }
+        else
+        {
+            _musicSource?.UnPause();
+        }
     }
 
     public void PlayMusic(AudioSource audioSource = null)
     {
-        if( audioSource != null )
+        if( _musicSource == null && audioSource != null )
         {
             _musicSource = audioSource;
         }
@@ -93,18 +125,15 @@ public class SoundManager : MonoBehaviour
 
         CheckAndRegisterAudioSource(_musicSource);
 
-        if (originalVolumeDict.ContainsKey(_musicSource))
+        if( _musicIsPlaying )
         {
-            _musicSource.volume = originalVolumeDict[_musicSource] * musicVolume;
+            _musicSource?.UnPause();
         }
         else
         {
-            Debug.LogError($"{_musicSource} isn't registered. Incoming audio source: {audioSource}");
+            _musicIsPlaying = true;
+            _musicSource?.Play();
         }
-
-        _musicIsPlaying = true;
-
-        _musicSource?.Play();
     }
 
     // Track original volume of each source and use that to multiply with player's setting.

@@ -114,9 +114,12 @@
     <Compile Include="Assets\KartSystems\Utilities\QuaternionExtensions.cs" />
     <Compile Include="Assets\KartSystems\Utilities\RequireInterfaceAttribute.cs" />
     <Compile Include="Assets\KartSystems\Utilities\RotateOnAxis.cs" />
+    <Compile Include="Assets\Scripts\AudioTrigger.cs" />
     <Compile Include="Assets\Scripts\CollectionCount.cs" />
     <Compile Include="Assets\Scripts\ExhaustParticles.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\TimerDisplay.cs" />
+    <Compile Include="Assets\Scripts\WinCelebrationMessage.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\LEGO\ShaderLibrary\ShadowDeformed.cginc" />

@@ -268,3 +268,4 @@ T:\Documents\LEGO_Unity\LEtsGO_Driving\Temp\bin\Debug\Boo.Lang.Compiler.dll
 T:\Documents\LEGO_Unity\LEtsGO_Driving\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
 T:\Documents\LEGO_Unity\LEtsGO_Driving\Temp\bin\Debug\Boo.Lang.Parser.dll
 T:\Documents\LEGO_Unity\LEtsGO_Driving\Temp\bin\Debug\Boo.Lang.Useful.dll
+T:\Documents\LEGO_Unity\LEtsGO_Driving\obj\Debug\Unity.LEGO.Minifig.csprojAssemblyReference.cache

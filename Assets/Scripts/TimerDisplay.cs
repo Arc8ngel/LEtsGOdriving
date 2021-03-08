@@ -68,8 +68,10 @@ public class TimerDisplay : MonoBehaviour
     {
         yield return new WaitForSeconds(bgmMusicStartDelay);
 
-        SoundManager.Instance.PlayMusic(bgmMusicSource);
-        bgmMusicSource?.Play();
+        if( bgmMusicSource != null )
+        {
+            SoundManager.Instance.PlayMusic(bgmMusicSource);
+        }
     }
 
     private IEnumerator AllowInput(bool allow, float delay = 0f)
@@ -110,6 +112,20 @@ public class TimerDisplay : MonoBehaviour
         {
             // Fade out
             bgmMusicSource.volume = Mathf.Floor(bgmMusicSource.volume * 0.95f) * SoundManager.Instance.GetMusicVolumeMultiplier();
+        }
+    }
+
+    private bool _timerRunningOnApplicationLoseFocus;
+    private void OnApplicationFocus(bool focus)
+    {
+        if (m_isTimeCounting && !focus )
+        {
+            _timerRunningOnApplicationLoseFocus = true;
+            SetTimerActive(false);
+        }
+        else if (focus && _timerRunningOnApplicationLoseFocus )
+        {
+            SetTimerActive(true);
         }
     }
 
