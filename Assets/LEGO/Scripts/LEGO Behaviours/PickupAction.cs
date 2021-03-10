@@ -168,6 +168,8 @@ namespace Unity.LEGO.Behaviours.Actions
                             partRenderer.enabled = false;
                         }
 
+                        transform.Find("GlowLight")?.gameObject.SetActive(false);
+
                         PlayAudio(spatial: false, destroyWithAction: false);
 
                         // Delay destruction of LEGOBehaviours one frame to allow multiple Pickup Actions to be collected.

@@ -60,6 +60,138 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7037801389719232274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272024375821264043}
+  - component: {fileID: 1278671712374768527}
+  m_Layer: 11
+  m_Name: Colliders2 (2)
+  m_TagString: RoadCoverCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1272024375821264043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037801389719232274}
+  m_LocalRotation: {x: -0.01838536, y: -0.71802783, z: 0.030748477, w: 0.6950919}
+  m_LocalPosition: {x: 20.775959, y: 3.648922, z: 16.122602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5250478935316479097}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 1.0660001, y: -91.823006, z: 3.966}
+--- !u!65 &1278671712374768527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037801389719232274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.35, y: 4.31, z: 11.98}
+  m_Center: {x: 0, y: 2.52, z: 4.89}
+--- !u!1 &7405761138029338286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3101031398843652517}
+  - component: {fileID: 5159019746850711443}
+  m_Layer: 11
+  m_Name: Colliders2 (1)
+  m_TagString: RoadCoverCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3101031398843652517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405761138029338286}
+  m_LocalRotation: {x: -0.10237573, y: -0.33467525, z: 0.036565736, w: 0.9360421}
+  m_LocalPosition: {x: 28.26, y: 2.57, z: 8.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5250478935316479097}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -9.624001, y: -40.022003, z: 7.9860005}
+--- !u!65 &5159019746850711443
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405761138029338286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.35, y: 4.31, z: 11.98}
+  m_Center: {x: 0, y: 2.52, z: 4.89}
+--- !u!1 &7709960470424174395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2381464708115229141}
+  - component: {fileID: 4969746057652894838}
+  m_Layer: 11
+  m_Name: Colliders2 (3)
+  m_TagString: RoadCoverCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2381464708115229141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709960470424174395}
+  m_LocalRotation: {x: -0.06489654, y: -0.89351314, z: 0.11138377, w: 0.43013537}
+  m_LocalPosition: {x: 11.35, y: 2.74, z: 16.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5250478935316479097}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 8.234, y: -127.69501, z: 12.357}
+--- !u!65 &4969746057652894838
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709960470424174395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.35, y: 4.31, z: 11.98}
+  m_Center: {x: 0, y: 2.52, z: 4.89}
 --- !u!1001 &5018288412041140834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2079,6 +2211,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 47728975774565145, guid: 40edbcc1d6247412ea82349e34d5add5,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47728975774565145, guid: 40edbcc1d6247412ea82349e34d5add5,
+        type: 3}
+      propertyPath: m_TagString
+      value: RoadCoverCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 598833546942666676, guid: 40edbcc1d6247412ea82349e34d5add5,
+        type: 3}
+      propertyPath: m_TagString
+      value: RoadCoverCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846497258933733901, guid: 40edbcc1d6247412ea82349e34d5add5,
+        type: 3}
       propertyPath: m_TagString
       value: RoadCoverCollider
       objectReference: {fileID: 0}
@@ -2167,6 +2314,12 @@ PrefabInstance:
 --- !u!4 &3840638366943673328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8135817075816636097, guid: 40edbcc1d6247412ea82349e34d5add5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5018288413815760177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5250478935316479097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 971080420861401416, guid: 40edbcc1d6247412ea82349e34d5add5,
     type: 3}
   m_PrefabInstance: {fileID: 5018288413815760177}
   m_PrefabAsset: {fileID: 0}
