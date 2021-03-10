@@ -17,6 +17,9 @@ public class ExhaustParticles : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+    [SerializeField]
+    private Light[] brakeLights;
+
     private Dictionary<ParticleSystem, float> _rateOverTimeMultipliers;
 
     private void Awake()
@@ -45,10 +48,26 @@ public class ExhaustParticles : MonoBehaviour
                 emissionMod.rateOverTimeMultiplier = multiplier;
             }
         }
+    }
 
-        if (audioSource != null )
+    private void Update()
+    {
+        Vector2 inputs = iInput.GenerateInput();
+
+        if( audioSource != null )
         {
             audioSource.pitch = 1f + (inputs.y * 0.75f);
+        }
+
+        if( brakeLights != null )
+        {
+            foreach( var brakeLight in brakeLights )
+            {
+                if( brakeLight != null )
+                {
+                    brakeLight.intensity = inputs.y < 0 ? 1f : 0.5f;
+                }
+            }
         }
     }
 }

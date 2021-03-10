@@ -45,6 +45,11 @@ public class TimerDisplay : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (bgmMusicSource != null )
+        {
+            bgmMusicSource.Stop();
+        }
+
         EventManager.RemoveListener<GameStartEvent>(OnGameStart);
         EventManager.RemoveListener<GameOverEvent>(OnGameOver);
         EventManager.RemoveListener<TimeStopEvent>(OnTimeStop);
@@ -61,6 +66,8 @@ public class TimerDisplay : MonoBehaviour
 
         StartCoroutine(BGMAudioInit());
     }
+
+    
 
     public float GetTimeElapsed() => m_timeElapsed;
 
