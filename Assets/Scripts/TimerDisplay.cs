@@ -63,8 +63,6 @@ public class TimerDisplay : MonoBehaviour
         {
             inputSystem.InputAllowed = false;
         }
-
-        StartCoroutine(BGMAudioInit());
     }
 
     
@@ -151,6 +149,7 @@ public class TimerDisplay : MonoBehaviour
     private void OnGameStart(GameStartEvent evt)
     {
         m_gameIsOver = false;
+        StartCoroutine(BGMAudioInit());
         StartCoroutine(AllowInput(true, m_IntroLockoutTime));
     }
 
