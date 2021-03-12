@@ -25,9 +25,17 @@ namespace Unity.LEGO.Game
         [SerializeField, HideInInspector, Tooltip("The delay in seconds until we activate the controller look inputs.")]
         float m_StartGameLockedControllerTimer = 0.3f;
 
+        [SerializeField]
+        private GameObject loadingOverlay_obj;
+
+        [SerializeField]
+        private UnityEngine.UI.Text loading_Percent_txt;
+
         public static string PreviousScene { get; private set; }
 
         public bool GameIsEnding { get; private set; }
+
+        private bool sceneIsLoading = false;
 
         float m_GameOverSceneTime;
         string m_GameOverSceneToLoad;
@@ -61,6 +69,7 @@ namespace Unity.LEGO.Game
 
         void Start()
         {
+            GameIsEnding = false;
             StartCoroutine(StartGameLockLookRotation());
 
             VariableManager.Reset();
@@ -87,7 +96,7 @@ namespace Unity.LEGO.Game
 
         void Update()
         {
-            if (GameIsEnding)
+            if (GameIsEnding && !sceneIsLoading)
             {
                 if (Time.time >= m_GameOverSceneTime)
                 {
@@ -95,9 +104,46 @@ namespace Unity.LEGO.Game
             Cursor.lockState = CursorLockMode.None;
 #endif
                     PreviousScene = SceneManager.GetActiveScene().name;
-                    SceneManager.LoadScene(m_GameOverSceneToLoad);
+                    sceneIsLoading = true;
+                    StartCoroutine(LoadScene());
                 }
             }
+        }
+
+        IEnumerator LoadScene()
+        {
+            Scene leavingScene = SceneManager.GetActiveScene();
+
+            loadingOverlay_obj?.SetActive(true);
+            yield return null;
+
+            if( SceneManager.GetSceneByName(m_GameOverSceneToLoad).isLoaded )
+            {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(m_GameOverSceneToLoad));
+                loadingOverlay_obj?.SetActive(false);
+                yield break;
+            }
+
+            //Begin to load the Scene you specify
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(m_GameOverSceneToLoad);
+            //Don't let the Scene activate until you allow it to
+            asyncOperation.allowSceneActivation = false;
+            Debug.Log("Pro :" + asyncOperation.progress);
+            //When the load is still in progress, output the Text and progress bar
+            while( !asyncOperation.isDone )
+            {
+                //Output the current progress
+                loading_Percent_txt.text = $"Loading...{(asyncOperation.progress * 100).ToString("0#")}%";
+
+                // Check if the load has finished
+                asyncOperation.allowSceneActivation = (asyncOperation.progress >= 0.9f);
+
+                yield return null;
+            }
+
+            SceneManager.UnloadSceneAsync(leavingScene);
+
+            loadingOverlay_obj?.SetActive(false);
         }
 
         void OnGameOver(GameOverEvent evt)

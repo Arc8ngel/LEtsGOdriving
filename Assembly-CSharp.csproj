@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\AudioTrigger.cs" />
     <Compile Include="Assets\Scripts\CollectionCount.cs" />
     <Compile Include="Assets\Scripts\ExhaustParticles.cs" />
+    <Compile Include="Assets\Scripts\ScenePreLoader.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\TimerDisplay.cs" />
     <Compile Include="Assets\Scripts\WinCelebrationMessage.cs" />

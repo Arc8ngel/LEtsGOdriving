@@ -149,6 +149,14 @@ public class TimerDisplay : MonoBehaviour
     private void OnGameStart(GameStartEvent evt)
     {
         m_gameIsOver = false;
+        StartCoroutine(StartWhenReady());
+    }
+
+    private IEnumerator StartWhenReady()
+    {
+        yield return bgmMusicSource.clip.loadState == AudioDataLoadState.Loaded;
+        yield return null; //buffer
+
         StartCoroutine(BGMAudioInit());
         StartCoroutine(AllowInput(true, m_IntroLockoutTime));
     }

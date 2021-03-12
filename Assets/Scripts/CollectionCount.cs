@@ -35,9 +35,29 @@ public class CollectionCount : MonoBehaviour
             pickupList?.ForEach(pickup => RegisterCollectionItem(pickup));
         }
 
-        //animator.SetBool(animator_AllCollected, false);
+        EventManager.AddListener<GameStartEvent>(OnGameStart);
+        EventManager.AddListener<GameOverEvent>(OnGameOver);
 
         UpdateText();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.RemoveListener<GameStartEvent>(OnGameStart);
+    }
+
+    private void OnGameOver(GameOverEvent evt)
+    {
+        EventManager.RemoveListener<GameStartEvent>(OnGameStart);
+    }
+
+    private void OnGameStart(GameStartEvent evt)
+    {
+        if( animator != null )
+        {
+            animator.SetBool("GameOver", false);
+            animator.SetTrigger("GameStart");
+        }
     }
 
     public void UpdateText()
