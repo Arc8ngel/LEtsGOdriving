@@ -120,9 +120,13 @@ public class TimerDisplay : MonoBehaviour
         }
     }
 
+    /*
     private bool _timerRunningOnApplicationLoseFocus;
     private void OnApplicationFocus(bool focus)
     {
+        if( !Application.isPlaying )
+            return;
+
         if (m_isTimeCounting && !focus )
         {
             _timerRunningOnApplicationLoseFocus = true;
@@ -133,6 +137,7 @@ public class TimerDisplay : MonoBehaviour
             SetTimerActive(true);
         }
     }
+    */
 
     private void UpdateTimerText()
     {

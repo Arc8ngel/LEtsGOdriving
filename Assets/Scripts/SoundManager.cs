@@ -64,8 +64,11 @@ public class SoundManager : MonoBehaviour
         musicVolumeSlider.onValueChanged.RemoveListener(UpdateVolume);
     }
 
-    private void OnApplicationFocus(bool focus)
+    /*private void OnApplicationFocus(bool focus)
     {
+        if( !Application.isPlaying )
+            return;
+        
         if( !focus )
         {
             PauseMusic(true);
@@ -74,7 +77,7 @@ public class SoundManager : MonoBehaviour
         {
             PauseMusic(false);
         }
-    }
+    }*/
 
     public void PlaySoundEffect(AudioSource audioSource)
     {
